@@ -24,6 +24,18 @@ export const addUser = async (userData) => {
     }
 };
 
+export const verifyOtp = async (email, otp) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/auth/verify-otp?type=setPassword`, {
+            email,
+            otp,
+        });
+        return response;
+    } catch (error) {
+        throw error.response.data.error || { message: error.response.data.error };
+    }
+};
+
 export const setUserPassword = async (email, password) => {
     try {
         const response = await axios.post(`${API_BASE_URL}/auth/set-password`, {

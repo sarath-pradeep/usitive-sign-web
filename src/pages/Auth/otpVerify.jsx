@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import verifyotpimg from '../../assets/auth-page-images/email verification.jpg'; // Assuming you have an image for OTP verification
+import { verifyOtp } from '../../services/authService';
 
 const VerifyOTP = () => {
   const location = useLocation();
@@ -38,10 +39,7 @@ const VerifyOTP = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/verify-otp?type=setPassword', {
-        email,
-        otp: otpValue
-      });
+      const response = await verifyOtp(email, otpValue);
 
       if (response.data?.message === 'OTP verified successfully for setting password') {
         navigate('/confirmpassword', { state: { email } });

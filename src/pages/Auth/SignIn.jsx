@@ -45,7 +45,7 @@ function SignIn() {
         {/* Right Form */}
         <div className="col-md-6 d-flex align-items-center justify-content-center">
           <div className="w-75 text-start mx-auto">
-            <h2 className="mb-3">Welcome back!</h2>
+            <h2 className="mb-2">Welcome back!</h2>
             <p className="mb-4">Log in to manage your documents effortlessly</p>
 
             <form onSubmit={handleSubmit}>

@@ -63,7 +63,7 @@ function Signup() {
         {/* Right Form */}
         <div className="col-md-6 d-flex align-items-center justify-content-center">
           <div className="w-75 text-start mx-auto">
-            <h2 className="mb-2 fw-bold">Get started</h2>
+            <h2 className="mb-2">Get started</h2>
             <p className="mb-4 text-muted">Sign up and simplify your document workflow!</p>
 
             <form onSubmit={handleSubmit}>

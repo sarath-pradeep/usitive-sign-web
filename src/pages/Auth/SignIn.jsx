@@ -102,13 +102,13 @@ function SignIn() {
                 <button type="button" className="btn btn-outline-secondary">LinkedIn</button>
               </div> */}
                 <div className="d-flex gap-2 justify-content-center">
-                    <button type="button" className="btn btn-outline-secondary">
+                    <button type="button" className="btn btn-outline-secondary" style ={{width : "150px"}}>
                         <img src={googleLogo} alt="Google" style={{ height: "20px" }} />
                     </button>
-                    <button type="button" className="btn btn-outline-secondary">
+                    <button type="button" className="btn btn-outline-secondary" style ={{width : "150px"}}>
                         <img src={microsoftLogo} alt="Microsoft" style={{ height: "20px" }} />
                     </button>
-                    <button type="button" className="btn btn-outline-secondary">
+                    <button type="button" className="btn btn-outline-secondary" style ={{width : "150px"}}>
                         <img src={linkedinLogo} alt="LinkedIn" style={{ height: "20px" }} />
                     </button>
                 </div>

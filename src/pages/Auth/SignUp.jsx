@@ -37,7 +37,7 @@ function Signup() {
       const result = await addUser(userData);
       console.log('Signup successful:', result);
       if (result.message === 'OTP has been send to User' && result.email) {
-        navigate('/verify', { state: { email: result.email } });
+        navigate('/verify', { state: { email: result.email, mode: "signup" } });
       } else {
         alert('Signup successful, but OTP not triggered.');
       }

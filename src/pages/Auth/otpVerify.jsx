@@ -3,11 +3,26 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import verifyotpimg from '../../assets/auth-page-images/email verification.jpg'; // Assuming you have an image for OTP verification
 import { verifyOtp } from '../../services/authService';
+import ForgotPassImage from '../../assets/auth-page-images/red.jpg';
 
 const VerifyOTP = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const email = location.state?.email || '';
+  const mode = location.state?.mode; 
+
+  const content = {
+    signup: {
+      title: 'Verify your email',
+      description: `A confirmation code was sent to`,
+      buttonText: 'Next',
+    },
+    forgot: {
+      title: 'Password Reset',
+      description: `We send a code to`,
+      buttonText: 'Continue',
+    }
+  };
 
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const inputRefs = useRef([]);
@@ -42,7 +57,11 @@ const VerifyOTP = () => {
       const response = await verifyOtp(email, otpValue);
 
       if (response.data?.message === 'OTP verified successfully for setting password') {
-        navigate('/confirmpassword', { state: { email } });
+        if(mode === 'signup') {
+          navigate('/confirmpassword', { state: { email, mode: "signup" } });
+        } else if(mode === 'forgot') {
+          navigate('/confirmpassword', { state: { email, mode: "forgot" } });
+        }
       } else {
         alert('Invalid OTP');
       }
@@ -66,7 +85,7 @@ const VerifyOTP = () => {
       {/* Left image side */}
       <div className="col-md-6 d-none d-md-flex" style={{ height: '100vh' }}>
       <img
-            src={verifyotpimg}
+            src={mode === "signup"? verifyotpimg : ForgotPassImage}
             alt="Signup Illustration"
             className="img-fluid"
             style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', objectPosition: 'center' }}
@@ -75,8 +94,8 @@ const VerifyOTP = () => {
 
       {/* Right form side */}
       <div style={{ flex: 1, padding: '60px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <h2>Verify your email</h2>
-        <p>A confirmation code was sent to <strong>{email}</strong></p>
+        <h2>{content[mode].title}</h2>
+        <p>{content[mode].description} <strong>{email}</strong></p>
 
         <form onSubmit={handleSubmit} style={{ marginTop: '20px' }}>
           <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', justifyContent: 'space-around' }}>
@@ -110,7 +129,7 @@ const VerifyOTP = () => {
             borderRadius: '6px',
             fontSize: '16px'
           }}>
-            Next
+            {content[mode].buttonText}
           </button>
         </form>
 

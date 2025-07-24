@@ -2,6 +2,7 @@ import { useState } from "react";
 import setPasswordImage from "../../assets/auth-page-images/password.jpg"; // Replace with your actual image path
 import { useLocation, useNavigate } from 'react-router-dom';
 import { setUserPassword } from "../../services/authService";
+import resetPasswordImage from "../../assets/auth-page-images/passwordnew.jpg"; // Replace with your actual image path
 
 export default function SetPassword() {
   const [password, setPassword] = useState("");
@@ -10,6 +11,7 @@ export default function SetPassword() {
 
   const location = useLocation();
   const email = location.state?.email || '';
+  const mode = location.state?.mode; // 'signup' or 'forgot'
   const navigate = useNavigate();  
 
   const validatePassword = (pwd) => {
@@ -48,7 +50,7 @@ export default function SetPassword() {
         {/* Left image */}
         <div className="col-md-6 d-none d-md-flex" style={{ height: '100vh' }}>
           <img
-            src={setPasswordImage}
+            src={mode === 'forgot' ? resetPasswordImage : setPasswordImage}
             alt="Set Password Illustration"
             className="img-fluid"
             style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', objectPosition: 'center' }}
@@ -58,7 +60,7 @@ export default function SetPassword() {
         {/* Right form */}
         <div className="col-md-6 d-flex align-items-center justify-content-center">
           <div className="w-75 text-start">
-            <h2 className="mb-2 fw-bold">Set your password</h2>
+            <h2 className="mb-2 fw-bold">{mode === 'signup'? 'Set your password' : 'Set your new Password'}</h2>
             <p className="mb-4 text-muted">Your account login will be <strong>{email}</strong></p>
 
             <form onSubmit={handleSubmit}>
@@ -107,7 +109,7 @@ export default function SetPassword() {
                 className="btn btn-primary w-100 mb-3"
                 disabled={!isPasswordValid}
               >
-                Next
+               {mode === 'forgot' ? 'Reset Password' : 'Next'}
               </button>
             </form>
           </div>

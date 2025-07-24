@@ -87,7 +87,7 @@ function SignIn() {
               {error && <div className="text-danger mb-3">{error}</div>}
 
               <div className="mb-3 text-end">
-                <a href="#" className="text-decoration-none">Forgot your password?</a>
+                <a href="forgotpassword" className="text-decoration-none">Forgot your password?</a>
               </div>
 
               <button type="submit" className="btn btn-primary w-100">Log In</button>
@@ -96,11 +96,6 @@ function SignIn() {
                 <span className="text-muted">Or Log in With</span>
               </div>
 
-              {/* <div className="d-flex gap-2 justify-content-center">
-                <button type="button" className="btn btn-outline-secondary">Google</button>
-                <button type="button" className="btn btn-outline-secondary">Microsoft</button>
-                <button type="button" className="btn btn-outline-secondary">LinkedIn</button>
-              </div> */}
                 <div className="d-flex gap-2 justify-content-center">
                     <button type="button" className="btn btn-outline-secondary" style ={{width : "150px"}}>
                         <img src={googleLogo} alt="Google" style={{ height: "20px" }} />

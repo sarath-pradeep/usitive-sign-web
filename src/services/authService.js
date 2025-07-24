@@ -48,3 +48,12 @@ export const setUserPassword = async (email, password) => {
         throw error.response.data.error || { message: error.response.data.error };
     }
 }
+
+export const forgotPassword = async (email) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/auth/forgot-password`, { email });
+        return response.data;
+    } catch (error) {
+        throw error.response.data.error || { message: error.response.data.error };
+    }
+}
